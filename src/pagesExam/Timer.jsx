@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ duration, onTimeUp }) => {
+const Timer = ({ duration, onTimeUp, running }) => { 
   const [timeLeft, setTimeLeft] = useState(duration);
 
   useEffect(() => {
+    if (!running) return;
+
     if (timeLeft > 0) {
       const timerId = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
       return () => clearTimeout(timerId);
     } else {
       onTimeUp();
     }
-  }, [timeLeft, onTimeUp]);
+  }, [timeLeft, running, onTimeUp]);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
