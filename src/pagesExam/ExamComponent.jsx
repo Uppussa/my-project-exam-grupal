@@ -7,7 +7,6 @@ import Timer from './Timer';
 import { useQuery } from '@tanstack/react-query';
 import { fetchExamById } from '../api/fechExam';
 
-
 const ExamComponent = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -32,18 +31,14 @@ const ExamComponent = () => {
     if (!exam || !exam.questions) return;
 
     let correctAnswers = 0;
-    let answeredQuestions = 0;
     exam.questions.forEach((question) => {
-      const questionId = question._id.toString(); // Convertir a string
-      if (updatedAnswers[questionId] !== undefined) {
-        answeredQuestions++;
-        if (updatedAnswers[questionId] === question.correctOption) {
-          correctAnswers++;
-        }
+      const questionId = question._id.toString();
+      if (updatedAnswers[questionId] === question.correctOption) {
+        correctAnswers++;
       }
     });
 
-    const calculatedScore = answeredQuestions > 0 ? (correctAnswers / answeredQuestions) * 100 : 0;
+    const calculatedScore = (correctAnswers / exam.questions.length) * 100;
     setScore(calculatedScore);
     setCorrectAnswersCount(correctAnswers);
   }, [exam]);

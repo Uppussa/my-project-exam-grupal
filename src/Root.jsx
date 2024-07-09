@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Setting from "./pages/Setting";  
 import All from "./pages/All";
 import ExamComponent from './pagesExam/ExamComponent';
-import AsciiDonut from './components/AsciiDonut';
+import CreateExamForm from './pagesExam/newExam/CreateExamForm';
 
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
           <Route path="/" element={<All />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/solutionExam/:id" element={<ExamComponent />} />
-          <Route path='/asciiDonut' element={<AsciiDonut/>} />
+          <Route path='/CreateExamForm' element={<CreateExamForm/>} />
         </Routes>
     
     </BrowserRouter>

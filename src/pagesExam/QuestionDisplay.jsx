@@ -2,7 +2,7 @@ import React from 'react';
 
 const QuestionDisplay = ({ question, onAnswer, answer }) => (
   <div className="w-3/4 bg-blue-50 p-4 rounded-lg">
-    <h2 className="text-lg font-semibold mb-2">Pregunta {question._id}</h2>
+    <h2 className="text-lg font-semibold mb-2">Pregunta</h2>
     <p className="mb-4">{question.question}</p>
     <div className="space-y-2">
       {question.options.map((option, index) => (

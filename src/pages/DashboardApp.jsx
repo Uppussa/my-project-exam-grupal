@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchExam } from '../api/fechExam';
 
 export default function DashboardApp() {
+  
   const { data, error, isLoading } = useQuery({
     queryKey: ['exams'],
     queryFn: fetchExam,
@@ -33,7 +34,7 @@ export default function DashboardApp() {
               <Cards
                 title={exam.title}
                 subtitle={`Nivel de inglés: ${exam.nivel}`}
-                creador={`Creado por: ${exam.createdBy.name}`} 
+                creador={`Creado por: ${exam.createdBy?.name}`} 
                 description={exam.description}
                 duration={'Duración: 1 hora'}
                 gradient="bg-gradient-to-r from-gray-600 to-blue-700"
