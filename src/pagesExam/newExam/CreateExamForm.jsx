@@ -43,7 +43,7 @@ const CreateExamForm = () => {
   
     return (
       <div className="my-10 max-w-4xl mx-auto p-4 bg-[rgba(113,111,146,0.94)] backdrop-blur-lg shadow-md rounded-lg">
-        <Link to="/">
+        <Link to="/all">
             <span className="text-black mb-4">← Back </span>
           </Link>
         <h2 className="text-2xl font-bold mb-4">Crear Examen</h2>
