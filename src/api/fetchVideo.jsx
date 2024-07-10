@@ -30,13 +30,13 @@ export const fetchVideoById = async (id) => {
 
 export const createVideo = async (formData) => {
     try {
-        console.log('Sending video data:', video);
-        const res = await axiosApi.post("/videos/new", formData, {
+        const res = await axiosApi.post('/videos/new', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${localStorage.getItem('token')}` // Adjust based on how you store the token
             },
-        }   
-        );
+        });
+
         if (res.status === 201) {
             return res.data;
         } else {

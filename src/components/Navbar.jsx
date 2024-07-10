@@ -1,30 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import images from '../assets/images.png';
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/UserContext";
-import { useContext } from "react";
-
 
 export default function Navbar() {
-const {user, logout} = useContext(AuthContext);
-const navigate = useNavigate();
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-const handleLogout = async () => {
+  const handleLogout = async () => {
     try {
-        await logout();
-        navigate('/login');
+      await logout();
+      navigate('/login');
     } catch (error) {
-        console.error('Error during logout:', error);
+      console.error('Error during logout:', error);
     } 
-}
-
-
-  
-
-
-
+  }
 
   return (
     <div className="flex justify-between items-center text-white p-4 rounded-lg shadow-2xl relative overflow-hidden bg-gradient-to-r from-gray-600 to-blue-700">
@@ -43,7 +35,7 @@ const handleLogout = async () => {
           </Link>
         </div>
         <div className="info">
-          <h4 className="text-lg font-bold">Kishan Sheth</h4>
+          <h4 className="text-lg font-bold">{user?.name}</h4> {/* Mostrar el nombre del usuario */}
           <h6 className="text-green-500">Online</h6>
         </div>
       </div>
@@ -51,12 +43,11 @@ const handleLogout = async () => {
       <div className="flex items-center gap-6">
         <IoMdNotificationsOutline className="text-2xl" />
         <button
-                            className="block w-full rounded-xl whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 dark:bg-surface-dark dark:text-black dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
-                            onClick={handleLogout}
-                        >
-                            Cerrar sesión
-                        </button>
-
+          className="block w-full rounded-xl whitespace-nowrap bg-white px-4 py-2 text-sm font-normal text-neutral-700 hover:bg-zinc-200/60 focus:bg-zinc-200/60 focus:outline-none active:bg-zinc-200/60 dark:bg-surface-dark dark:text-black dark:hover:bg-neutral-800/25 dark:focus:bg-neutral-800/25 dark:active:bg-neutral-800/25"
+          onClick={handleLogout}
+        >
+          Cerrar sesión
+        </button>
       </div>
     </div>
   );

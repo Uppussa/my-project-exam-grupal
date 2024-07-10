@@ -8,7 +8,7 @@ const Setting = () => {
       <div className="flex">
         <div className="w-1/4 border-r">
           <div className="flex flex-col items-center text-center p-3 py-5">
-          <Link to="/">
+          <Link to="/all">
             <span className="text-blue-500 mb-4">← Back </span>
           </Link>
             <img

@@ -8,6 +8,9 @@ import CreateVideos from './pagesVideos/CreateVideos';
 import Login from './login/Login'
 import { AuthProvider } from './context/UserContext';
 import PrivateRoute from './context/PrivateRoute';
+import ParentComponent from './pagesVideos/ParentComponent';
+import HomeVideos from './pagesVideos/HomeVideo';
+import SelectVideos from './pagesVideos/SelectVideos';
 
 const App = () => {
   return (
@@ -20,7 +23,9 @@ const App = () => {
           <Route path="/setting" element={<Setting />} />
           <Route path="/solutionExam/:id" element={<ExamComponent />} />
           <Route path='/all/CreateExamForm' element={<CreateExamForm/>} />
-          <Route path='/CreateVideos' element={<CreateVideos />} />
+         {/* < Route path='/HomeVideo' element={<HomeVideos />} />     */}
+          <Route path='/CreateVideos' element={<ParentComponent />} />
+          <Route path="/videos/:id" element={<SelectVideos />} />
           </Route>
         </Routes>
     </BrowserRouter>
