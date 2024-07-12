@@ -6,7 +6,7 @@ const AlumnosVideos = () => {
   const { id } = useParams();
   const [videos, setVideos] = useState([]);
   const [error, setError] = useState(null);
-  const [openModal, setOpenModal] = useState(false);
+
 
   useEffect(() => {
     const fetchVideos = async () => {

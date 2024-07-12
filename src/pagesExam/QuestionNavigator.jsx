@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+
 
 const QuestionNavigator = ({ totalQuestions, currentQuestion, setCurrentQuestion, answers }) => (
   <div className="w-1/4 pr-4">

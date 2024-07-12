@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 
 const QuestionForm = ({ index, question, onQuestionChange, onRemoveQuestion }) => {
