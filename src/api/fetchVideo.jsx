@@ -1,8 +1,12 @@
-import axiosApi from "./axiosApi";
+import axiosApi from './axiosApi';
 
 export const fetchVideo = async () => { 
+    const token = localStorage.getItem('token');
     try {
-        const res = await axiosApi.get("/videos");
+        const res = await axiosApi.get("/videos", {headers: { Authorization: `Bearer ${token}`}});
+        // headers: {
+        //     Authorization: `Bearer ${token}`;
+        // }
         if (res.status === 200) {
             return res.data;
         } else {
@@ -15,8 +19,9 @@ export const fetchVideo = async () => {
 };
 
 export const fetchVideoById = async (id) => {
+    const token = localStorage.getItem('token');
     try {
-        const res = await axiosApi.get(`/videos/${id}`);
+        const res = await axiosApi.get(`/videos/${id}`, {headers: { Authorization: `Bearer ${token}`}});
         if (res.status === 200) {
             return res.data;
         } else {
@@ -29,21 +34,22 @@ export const fetchVideoById = async (id) => {
 };
 
 export const createVideo = async (formData) => {
-    try {
-        const res = await axiosApi.post('/videos/new', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${localStorage.getItem('token')}` // Adjust based on how you store the token
-            },
-        });
+    const token = localStorage.getItem('token');
+    const res = await axiosApi.post('/videos/new', formData, {headers: {Authorization: `Bearer ${token}`}});
+    console.log(res)
+    return res.data;
+    // try {
+    //     const res = await axiosApi.post('/videos/new', formData);
+    //     console.log(res)
 
-        if (res.status === 201) {
-            return res.data;
-        } else {
-            throw new Error(`Error: ${res.status}`);
-        }
-    } catch (error) {
-        console.error("Error al crear el video:", error);
-        return null;
-    }
+    //     if (res.status === 201) {
+    //         return res.data;
+    //     } else {
+    //         throw new Error(`Error: ${res.status}`);
+    //     }
+    // } catch (error) {
+    //     console.error("Error al crear el video:", error);
+    //     throw error; // Re-lanzar el error para que pueda ser manejado por el componente
+        
+    // }
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 const QuestionForm = ({ index, question, onQuestionChange, onRemoveQuestion }) => {
   const handleChange = (e) => {
@@ -23,19 +23,19 @@ const QuestionForm = ({ index, question, onQuestionChange, onRemoveQuestion }) =
           name="question"
           value={question.question}
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded mt-2"
+          className="w-full p-2 border text-black border-gray-300 rounded mt-2"
           required
         />
       </div>
       <div className="mb-2">
-        <label className="block text-gray-700">Opciones</label>
+        <label className="block text-black">Opciones</label>
         {question.options.map((option, i) => (
           <input
             key={i}
             type="text"
             value={option}
             onChange={(e) => handleOptionChange(i, e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-2"
+            className="w-full p-2 border border-gray-300 text-black rounded mt-2 te"
             placeholder={`Opción ${i + 1}`}
             required
           />
@@ -48,7 +48,7 @@ const QuestionForm = ({ index, question, onQuestionChange, onRemoveQuestion }) =
           name="correctOption"
           value={question.correctOption}
           onChange={handleChange}
-          className="w-full p-2 border border-gray-300 rounded mt-2"
+          className="w-full p-2 border border-gray-300  text-black rounded mt-2"
           required
         />
       </div>

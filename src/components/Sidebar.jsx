@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+
 import classImage from "../assets/class.jpg"; // Ajusta la ruta según sea necesario
 import { Link } from "react-router-dom";
 import {jwtDecode} from "jwt-decode"; // Corregido el import de jwtDecode
@@ -38,7 +39,7 @@ export default function Sidebar({ setShowVideos }) {
     }}>
       <div className="brand bg-gray-600 h-9 flex justify-center items-center">
         <h2 className="font-black tracking-wider">
-          Fun<span className="text-pink-600 font-black">val</span>
+          
         </h2>
       </div>
       <div className="ml-[115px]">
@@ -63,16 +64,25 @@ export default function Sidebar({ setShowVideos }) {
           <Link to="CreateExamForm">
             <button className="relative block items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-700 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
               <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                Create New Exam
+                Exam
               </span>
             </button>
           </Link>
         )}
          {role === 'teacher' && (
-          <Link to="CreateExamForm">
+          <Link to="/all/alumnos">
             <button className="relative block items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-700 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
               <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                Curso
+                students
+              </span>
+            </button>
+          </Link>
+        )}
+         {role === 'teacher' && (
+          <Link to="/all/videos">
+            <button className="relative block items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-700 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+              <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Course
               </span>
             </button>
           </Link>

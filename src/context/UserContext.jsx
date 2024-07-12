@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
+/* eslint-disable react/prop-types */
+import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
 export const AuthContext = createContext();
@@ -27,6 +28,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const res = await axios.post('http://localhost:3000/users/login', { email, password });
+      console.log('Login response:', res.data);
       localStorage.setItem('token', res.data.token);
       setIsAuthenticated(true);
       authenticateUser(res.data.token);
@@ -35,6 +37,7 @@ export const AuthProvider = ({ children }) => {
       alert(error.response?.data?.message || 'Error during login');
     }
   };
+  
 
   const logout = () => {
     localStorage.removeItem('token');

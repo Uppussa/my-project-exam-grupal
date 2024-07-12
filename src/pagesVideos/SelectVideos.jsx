@@ -1,15 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { fetchVideoById } from "../api/fetchVideo";
+import { API_URL } from "../config/confij.js";
+import { useMutation } from "@tanstack/react-query";
 
 function SelectVideos() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { data, isError, isLoading } = useQuery({
-        queryKey: ['videos', id],
+    const { data, isError, isLoading } = useQuery({        queryKey: ['videos', id],
         queryFn: () => fetchVideoById(id),
     });
+
+    const deleteVideoMutation = useMutation({
+     
+        onSuccess: () => {
+          alert('Video eliminado');
+          navigate('/videos');
+        },
+        onError: () => alert('Error al eliminar el video'),
+      });
 
     if (isError) {
         navigate('/all');
@@ -31,6 +40,14 @@ function SelectVideos() {
         );
     }
 
+    
+  const handleDeleteVideo = async () => {
+    const respuesta = confirm('¿Deseas eliminar el video?');
+    if (!respuesta) return;
+
+    await deleteVideoMutation.mutateAsync(data._id);
+  };
+
     return (
         <main className="max-w-4xl mx-auto mt-12 p-8 bg-white shadow-lg rounded-lg">
             <Link to="/all">
@@ -42,7 +59,7 @@ function SelectVideos() {
         </Link>
             <section className="mb-8">
                 <video
-                    src={`http://localhost:3000/videos/content/${id}`}
+                    src={`${API_URL}/api/videos/content/${data._id}`}
                     controls
                     autoPlay
                     className="w-full rounded-lg shadow-md"
@@ -56,7 +73,7 @@ function SelectVideos() {
                 <button className="px-6 py-3 bg-[#3a868f] hover:bg-opacity-80 text-white rounded-lg font-bold shadow-md transition duration-300">
                     Editar
                 </button>
-                <button className="px-6 py-3 bg-red-500 hover:bg-opacity-80 text-white rounded-lg font-bold shadow-md transition duration-300">
+                <button  onClick={handleDeleteVideo} className="px-6 py-3 bg-red-500 hover:bg-opacity-80 text-white rounded-lg font-bold shadow-md transition duration-300">
                     Eliminar
                 </button>
             </section>
